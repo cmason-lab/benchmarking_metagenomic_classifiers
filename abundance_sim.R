@@ -31,13 +31,13 @@ samples <- c("Huttenhower_LC1", "Huttenhower_LC2", "Huttenhower_LC3", "Huttenhow
 Mat <- list()
 readEstimators <- c("B","Bl","C","Cs","D","K","Kf","L","N")
 
-hc_lc_readcounts <- read.table("../../Truth_set_IDs/HC-LC-input.csv",header=TRUE,sep=",") #separate file with read counts for each species for each dataset
+hc_lc_readcounts <- read.table("../../Truth_set_IDs/HC-LC-abundances.csv",header=TRUE,sep=",") #separate file with read counts for each species for each dataset - available from IMMSA website in species subfolder of truth_sets
 hc_lc_readcounts$count <- as.numeric(hc_lc_readcounts$count)
 L1_distances <- data.frame(L1=character(),sample=character(),tool=character(),stringsAsFactors=FALSE)
 
 for (s in samples) {
 	#s <- samples[[1]]
-  T <- read.delim(paste0("../../Truth_set_IDs/",s,"_abund.txt"), header = TRUE) #abundance estimate in automated build is incorrect
+  T <- read.delim(paste0("../../Truth_set_IDs/",s,"_abund.txt"), header = TRUE) #abundance estimate in automated build is incorrect - see truth_set_relative_abundances.zip 
   T$Abundance <- 100*T$Abundance/sum(T$Abundance)
   
   toolfilenames <- c("_BlastMeganFiltered.txt", "_BlastMeganFilteredLiberal.txt", 
